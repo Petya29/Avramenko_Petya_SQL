@@ -1,6 +1,6 @@
 set lc_monetary TO 'en_US.UTF-8'
 
--1.Вивести значення наступних колонок: назва книги, ціна, назва видавництва, формат.
+--1.Вивести значення наступних колонок: назва книги, ціна, назва видавництва, формат.
 
 create function get_N_P_PU_f()
   returns table (book_name text,book_price money,book_publiching text,book_format text )
@@ -15,7 +15,7 @@ language sql;
 select * from get_N_P_PU_f();
  
 
--2.Вивести значення наступних колонок: тема, категорія, назва книги, назва видавництва. Фільтр по темам і категоріям.
+--2.Вивести значення наступних колонок: тема, категорія, назва книги, назва видавництва. Фільтр по темам і категоріям.
 
 create function get_t_c_n_p()
 	returns table (book_topic char, book_category char,book_name char,book_publishing char)
@@ -29,7 +29,7 @@ language sql;
 
 select * from get_t_c_n_p();
 
--3.Вивести книги видавництва 'BHV', видані після 2000 р
+--3.Вивести книги видавництва 'BHV', видані після 2000 р
 
 create function after_2000() returns table(book_name char,publishing char, book_year date) 
 as $$
@@ -41,7 +41,7 @@ language sql;
 
 select * from after_2000()
 
--4.Вивести загальну кількість сторінок по кожній назві категорії. Фільтр за спаданням кількості сторінок.
+--4.Вивести загальну кількість сторінок по кожній назві категорії. Фільтр за спаданням кількості сторінок.
 
 create function sum_pages()
 returns table (category char, sum_pages bigint)
@@ -54,7 +54,7 @@ language sql;
 
 select * from sum_pages()
 
--5.Вивести середню вартість книг по темі 'Використання ПК' і категорії 'Linux'.
+--5.Вивести середню вартість книг по темі 'Використання ПК' і категорії 'Linux'.
 
 create function avg_price(topic char,category char)
 returns table (topic char, category char,avg_price money)
@@ -69,7 +69,7 @@ language sql;
 
 select * from avg_price('Використання ПК%','Linux')
 
--6.Вивести всі дані універсального відносини.
+--6.Вивести всі дані універсального відносини.
 
 create function univers_relation()
 returns table (book_id integer, book_number integer,book_new text, book_name text,book_price money,book_pages integer, book_format text, book_date date, book_circulation integer,publishing text,topic text,category text)
@@ -85,7 +85,7 @@ language sql;
 
 select * from univers_relation()
 
--7.Вивести пари книг, що мають однакову кількість сторінок.
+--7.Вивести пари книг, що мають однакову кількість сторінок.
 
 create function same_number_pages()
 returns table (book_name_1 char, book_pages_1 integer, book_name_2 char, book_pages_2 integer)
@@ -97,7 +97,7 @@ language sql;
 
 select * from  same_number_pages();
 
--8.Вивести тріади книг, що мають однакову ціну.
+--8.Вивести тріади книг, що мають однакову ціну.
 
 create function same_number_pages_3()
 returns table (book_name_1 text, book_pages_1 money, book_name_2 text, book_pages_2 money,book_name_3 text, book_pages_3 money)
@@ -109,7 +109,7 @@ language sql;
 
 select * from same_number_pages_3();
 
--9.Вивести всі книги категорії 'C ++'.
+--9.Вивести всі книги категорії 'C ++'.
 
 create function books_by_category(category char)
 returns table (book_name char, category char)
@@ -121,7 +121,7 @@ language sql;
 
 select * from books_by_category('%C ++%');;
 
--10.Вивести список видавництв, у яких розмір книг перевищує 400 сторінок.
+--10.Вивести список видавництв, у яких розмір книг перевищує 400 сторінок.
 
 create function pages_more_400()
 returns table (publishing char)
@@ -133,7 +133,7 @@ language sql;
 
 select * from pages_more_400();
 
--11.Вивести список категорій за якими більше 3-х книг.
+--11.Вивести список категорій за якими більше 3-х книг.
 
 create function category_book_amount(amount int)
 returns table (category text, amount int)
@@ -146,7 +146,7 @@ language sql;
 
 select * from category_book_amount(3);
 
--12.Вивести список книг видавництва 'BHV', якщо в списку є хоча б одна книга цього видавництва.
+--12.Вивести список книг видавництва 'BHV', якщо в списку є хоча б одна книга цього видавництва.
 
 create function books_by_category_exists(category text)
 returns table(book_name  char, category  char )
@@ -158,7 +158,7 @@ language sql;
 
 select * from books_by_category_exists('BHV%');
 
--13.Вивести список книг видавництва 'BHV', якщо в списку немає жодної книги цього видавництва.
+--13.Вивести список книг видавництва 'BHV', якщо в списку немає жодної книги цього видавництва.
 
 create function book_by_category_not_exists(category text)
 returns table(book_name  char, category  char )
@@ -170,7 +170,7 @@ language sql;
 
 select * from book_by_category_not_exists('BHV%');
 
--14.Вивести відсортоване загальний список назв тем і категорій.
+--14.Вивести відсортоване загальний список назв тем і категорій.
 
 create function topics_and_categories()
 returns table ( type char,topics_and_categories char)
@@ -181,7 +181,7 @@ language sql;
 
 select * from topics_and_categories();
 
--15.Вивести відсортоване в зворотному порядку загальний список неповторяющихся перших слів назв книг і категорій
+--15.Вивести відсортоване в зворотному порядку загальний список неповторяющихся перших слів назв книг і категорій
 
 create function first_book_name_catergory()
 returns table (type char, book_name_and_category char)
