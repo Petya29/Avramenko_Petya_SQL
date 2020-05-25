@@ -1,4 +1,4 @@
--1.Кількість тем може бути в діапазоні від 5 до 10.
+--1.Кількість тем може бути в діапазоні від 5 до 10.
 
 create function topic_range() returns trigger as  $topic_range$
 	begin
@@ -18,7 +18,7 @@ create trigger topic_insert_trig
 	
 
 
--2.Новинкою може бути тільки книга видана в поточному році.
+--2.Новинкою може бути тільки книга видана в поточному році.
 
 CREATE FUNCTION new_book() RETURNS trigger AS  $new_book$
 	BEGIN
@@ -36,7 +36,7 @@ CREATE TRIGGER new_book_trig
 	EXECUTE PROCEDURE new_book()	
   
   
--3.Книга з кількістю сторінок до 100 не може коштувати більше 10 $, до 200 - 20 $, до 300 - 3 0 $.
+--3.Книга з кількістю сторінок до 100 не може коштувати більше 10 $, до 200 - 20 $, до 300 - 3 0 $.
 
 CREATE FUNCTION book_price() RETURNS trigger AS  $book_price$
 	BEGIN
@@ -60,7 +60,7 @@ CREATE TRIGGER book_price_trig
 	FOR EACH ROW
 	EXECUTE PROCEDURE book_price()
 	
--4.Видавництво "BHV" не випускає книги накладом меншим 5000, а видавництво МікроАрт - 10000.
+--4.Видавництво "BHV" не випускає книги накладом меншим 5000, а видавництво МікроАрт - 10000.
 
 CREATE FUNCTION book_circulation() RETURNS trigger AS  $book_circulation$
 	BEGIN
@@ -81,7 +81,7 @@ CREATE TRIGGER book_circulation_trig
 	FOR EACH ROW
 	EXECUTE PROCEDURE book_circulation()
 	
--5.Книги з однаковим кодом повинні мати однакові дані.
+--5.Книги з однаковим кодом повинні мати однакові дані.
 
 CREATE FUNCTION same_books() RETURNS trigger AS  $same_books$
   BEGIN
@@ -101,7 +101,7 @@ ON book
 FOR EACH ROW 
 EXECUTE PROCEDURE same_books();
 
--6. Якщо користувач не "dbo", то видалення забороняється.
+--6. Якщо користувач не "dbo", то видалення забороняється.
 
 CREATE FUNCTION forbid_delete() RETURNS trigger AS  $forbid_delete$
 	BEGIN
@@ -119,7 +119,7 @@ CREATE TRIGGER forbid_delete_trig
 	EXECUTE PROCEDURE forbid_delete() 
 	
 		
--7.Користувач "dbo" не має права змінювати ціну книги.
+--7.Користувач "dbo" не має права змінювати ціну книги.
 
 CREATE FUNCTION db_user() RETURNS trigger AS  $db_user$
 	BEGIN
@@ -136,7 +136,7 @@ CREATE TRIGGER db_user_trig
 	FOR EACH ROW
 	EXECUTE PROCEDURE db_user()
 	
--8.Видавництва ДМК і Вільямс підручники не видають.
+--8.Видавництва ДМК і Вільямс підручники не видають.
 
 CREATE FUNCTION book_category_and_publishing() RETURNS trigger AS  $book_category_and_publishing$
 	BEGIN			
@@ -156,7 +156,7 @@ CREATE TRIGGER book_category_and_publishing_trig
 	FOR EACH ROW
 	EXECUTE PROCEDURE book_category_and_publishing()
   
--9.Видавництво не може випустити більше 10 новинок протягом одного місяця поточного року.
+--9.Видавництво не може випустити більше 10 новинок протягом одного місяця поточного року.
 
 CREATE FUNCTION less_ten_new() RETURNS trigger AS  $less_ten_new$
 	BEGIN
@@ -175,7 +175,7 @@ CREATE TRIGGER book_less_ten_new_trig
 	EXECUTE PROCEDURE less_ten_new()
   
 
--10.видавництво BHV не випускає книги формату 60х88 / 16.
+--10.видавництво BHV не випускає книги формату 60х88 / 16.
 
 CREATE FUNCTION publishing_format() RETURNS trigger AS  $publishing_format$
 	BEGIN
