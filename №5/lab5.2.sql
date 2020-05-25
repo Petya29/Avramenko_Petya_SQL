@@ -1,11 +1,11 @@
--2.Скласти SQLscript, що виконує:
--a.Створення таблиць бази даних. Команди для створення таблиці повинні містити головний ключ, обмеження типу null / not null,  створення зв'язків 
--b.Завантаження даних в таблиці 
+--2.Скласти SQLscript, що виконує:
 
--- ---
+--a.Створення таблиць бази даних. Команди для створення таблиці повинні містити головний ключ, обмеження типу null / not null,  створення зв'язків 
+
+--b.Завантаження даних в таблиці 
+
 -- Table 'book'
--- 
--- ---
+
 CREATE TABLE IF NOT EXISTS book
 (	book_id INTEGER PRIMARY KEY,
 	book_number INTEGER NOT NULL,
@@ -21,30 +21,27 @@ CREATE TABLE IF NOT EXISTS book
  	book_category_id INTEGER REFERENCES Category(id_category) ON UPDATE CASCADE ON DELETE NO ACTION 
  	
 )
--- ---
+
 -- Table 'publishing'
--- 
--- ---
+
 CREATE TABLE IF NOT EXISTS Publishing
 (
 	id_publishing INTEGER PRIMARY KEY,
 	publishing CHAR(250) NOT NULL
 )
 
--- ---
+
 -- Table 'Topic'
--- 
--- ---
+
 Create table IF NOT EXISTS Topic
 (
 	id_topic INTEGER PRIMARY KEY,
 	topic CHAR(250) NOT NULL
 )
 
--- ---
+
 -- Table 'Category'
--- 
--- ---
+
 Create table IF NOT EXISTS Category
 (
 	id_category INTEGER PRIMARY KEY,
